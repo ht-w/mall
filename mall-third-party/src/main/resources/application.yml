@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: mall-thirdparty
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: 8111
+    alicloud:
+      access-key: LTAI5tNjdQpVzqFbV95Afsus
+      secret-key: Slw6325hsZ4z21nvWvyQNDKlwfeBin
+      oss:
+        endpoint: oss-ap-southeast-3.aliyuncs.com
+        bucket: project-mall-test
+server:
+  port: 30000
+
+#阿里云短信
+aliyun:
+  sms:
+    region-id: cn-hangzhou
+    key-id: LTAI5tNjdQpVzqFbV95Afsus
+    key-secret: Slw6325hsZ4z21nvWvyQNDKlwfeBin
+    template-code: 你的短信模板code
+    sign-name: 你的短信模板签名
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
