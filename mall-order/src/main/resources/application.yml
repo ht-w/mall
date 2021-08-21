@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: mall-order
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.189.129:3305/mall_oms
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  rabbitmq:
+    listener:
+      simple:
+        acknowledge-mode: manual
+    virtual-host: /
+    publisher-confirm-type: correlated
+    host: 192.168.189.129
+    port: 5672
+    publisher-returns: true
+
+
+
+  thymeleaf:
+    cache: false
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: 8111
+
+  redis:
+    host: 192.168.189.129
+    port: 6379
+
+mall:
+  thread:
+    coreSize: 20
+    maxSize: 200
+    keepAliveTime: 10
+
+
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+
+
+server:
+  port: 9001
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+
+
+
