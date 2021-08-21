@@ -1,0 +1,91 @@
+spring:
+  application:
+    name: mall-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: product_route
+          uri: lb://mall-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id: coupon_route
+          uri: lb://mall-coupon
+          predicates:
+            - Path=/api/coupon/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id: third_party_route
+          uri: lb://mall-thirdparty
+          predicates:
+            - Path=/api/thirdparty/**
+          filters:
+            - RewritePath=/api/thirdparty/(?<segment>.*),/$\{segment}
+
+
+        - id: member_route
+          uri: lb://mall-member
+          predicates:
+            - Path=/api/member/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+        - id: ware_route
+          uri: lb://mall-ware
+          predicates:
+            - Path=/api/ware/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id : admin_route
+          uri: lb://renren-fast
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>/?.*), /renren-fast/$\{segment}
+
+        - id: mall_host_route # 要放在后面
+          uri: lb://mall-product
+          predicates:
+            - Host=mall.com, item.mall.com
+
+        - id: mall_search_route
+          uri: lb://mall-search
+          predicates:
+            - Host=search.mall.com
+
+        - id: mall_auth_server_route
+          uri: lb://mall-auth-server
+          predicates:
+            - Host=auth.mall.com
+
+        - id: mall_cart_route
+          uri: lb://mall-cart
+          predicates:
+            - Host=cart.mall.com
+
+        - id: mall_order_route
+          uri: lb://mall-order
+          predicates:
+            - Host=order.mall.com
+
+        - id: mall_seckill_route
+          uri: lb://mall-seckill
+          predicates:
+            - Host=seckill.mall.com
+
+        - id: mall_member_route
+          uri: lb://mall-member
+          predicates:
+            - Host=member.mall.com
+
+    nacos:
+      config:
+        server-addr: localhost:8848
+    sentinel:
+      transport:
+        dashboard: 8111
+server:
+  port: 88
