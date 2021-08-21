@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: mall-product
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        file-extension: yml
+        namespace: 0f740e99-fe65-449f-b249-ea8e2ad15946
