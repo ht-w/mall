@@ -12,9 +12,9 @@ Services:
 
 Back end:
 - Springboot
-- SpringCloud
-- SpringCloudAlibaba
-- MyBatis-Plus
+- Spring Cloud
+- Spring Cloud Alibaba
+- MyBatisPlus
 - ElasticSearch
 - RabbitMQ
 - Springsession
